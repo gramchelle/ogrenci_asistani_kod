@@ -12,6 +12,9 @@ load_dotenv("secrets.env")
 API_KEY = os.getenv("AIRTABLE_API_KEY")
 BASE_ID = os.getenv("BASE_ID")
 TABLE_NAME = os.getenv("TABLE_NAME")
+FAISS_FILE = "faiss_index.index"
+SIMILARITY_THRESHOLD = 0.8
+METADATA_FILE = "metadata.pkl"
 
 ## Benzerlik oranı ölçme
 def cosine_similarity(vec1, vec2):
@@ -60,7 +63,6 @@ def process_user_question(user_question):
     end = time.time()
     print(f"{end - start:.2f} saniye düşünüldü.")
 
-
 if __name__ == "__main__":
     exit_flag = True
 
@@ -69,6 +71,7 @@ if __name__ == "__main__":
         process_user_question(user_input)
         get_out = input("Devam etmek için enter, çıkış yapmak için 'e' tuşuna basınız.")
         if get_out.lower() == "e":
+            print("Görüşmek üzere!")
             exit_flag = False
         else:
             continue

@@ -7,14 +7,16 @@ import os
 
 load_dotenv("secrets.env")
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def is_technical_question_gpt(question):
-    system_prompt = ("Kullanıcının sorduğu sorunun yapay zeka, makine öğrenmesi, derin öğrenme veya veri bilimiyle ilgili olup olmadığını kontrol et."
-                     "Eğer ilgiliyse 'EVET', değilse 'HAYIR' yanıtı ver.")
+    system_prompt = (
+        "Kullanıcının sorduğu sorunun yapay zeka, makine öğrenmesi, derin öğrenme "
+        "veya veri bilimiyle ilgili olup olmadığını kontrol et. Eğer ilgiliyse 'EVET', değilse 'HAYIR' yanıtı ver."
+    )
 
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": question}
@@ -25,7 +27,7 @@ def is_technical_question_gpt(question):
     return answer == "EVET"
 
 def get_gpt_answer(question):
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "Makine öğrenmesi alanında uzman bir asistansın. Açık ve sade cevaplar ver."},
