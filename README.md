@@ -74,8 +74,6 @@ Pull request’ler veya öneriler her zaman memnuniyetle karşılanır. Lütfen 
 
 ---
 
-## 👥 Proje Sahipleri
-
 ## 👥 Yazarlar
 
 Bu proje, öncülüğünü **Ferhat Akköprü**'nün yaptığı ve **Özlem Nur Duman**'ın katkılarıyla geliştirilen bir çalışmadır.
